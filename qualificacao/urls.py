@@ -9,7 +9,7 @@ router = routers.DefaultRouter(
     trailing_slash=True
 )
 
-router.register(r'', views.UserViewSet, basename='')
+router.register(r'fornecedor', views.FornecedorView, basename='fornecedor')
 
 urlpatterns = [
     path('', include(router.urls)),
