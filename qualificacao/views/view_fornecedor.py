@@ -3,7 +3,8 @@ from rest_framework.status import HTTP_201_CREATED
 from rest_framework.response import Response
 
 from ..serializers.serializer_fornecedor import FornecedorSerializer
-from ..models.cadastro_fornecedores import CadastroFornecedores
+from ..models.cadastro_fornecedores import CadastroFornecedores, EnderecoFornecedor
+
 
 class FornecedorView(viewsets.ModelViewSet):
     serializer_class = FornecedorSerializer
@@ -13,7 +14,12 @@ class FornecedorView(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         endereco_fornecedor = request.data.pop('endereco_fornecedor')
-        serializer = self.serializer_class(data=request.data, context={'endereco_fornecedor': endereco_fornecedor})
-        serializer.is_valid(raise_exception=False)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=HTTP_201_CREATED, headers=headers)
+        fornecedor = request.data
+
+        new_endereco_fornecedor = EnderecoFornecedor.objects.create(**endereco_fornecedor)
+        new_endereco_fornecedor.save()
+        new_fornecedor = CadastroFornecedores.ativos.create(**fornecedor, endereco_fornecedor=new_endereco_fornecedor)
+        new_fornecedor.save()
+
+        serializer = FornecedorSerializer(new_fornecedor)
+        return Response(serializer.data)
