@@ -70,6 +70,12 @@ class CadastroFornecedores(models.Model):
     deletado_em = models.DateTimeField(blank=True, null=True, default=None)
     deletado = models.BooleanField(default=False)
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['uuid']),
+            models.Index(fields=['cnpj'], name='cnpj_index')
+        ]
+
     def __str__(self):
         return str(self.razao_social)
 
