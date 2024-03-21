@@ -9,20 +9,27 @@ Classe que representa o fornecedor com relacionamento 1:1 para o endereco do for
 """
 
 
-class CadastroFornecedorManager(models.Manager):
-    def deletados(self):
-        return self.filter(deletado=True)
+class ForncedoresTodos(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().all()
 
-    def ativos(self):
-        return self.filter(deletado=False)
 
-    def todos(self):
-        return self.all()
+class FornecedoresDeletados(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(deletado=True)
+
+
+class FornecedoresAtivos(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(deletado=False)
+
 
 
 class CadastroFornecedores(models.Model):
 
-    objects = CadastroFornecedorManager()
+    ativos = FornecedoresAtivos()
+    inativos = FornecedoresDeletados()
+    todos = ForncedoresTodos()
     uuid = models.UUIDField(
         primary_key=True,
         null=False,
