@@ -24,7 +24,6 @@ class FornecedoresAtivos(models.Manager):
         return super().get_queryset().filter(deletado=False)
 
 
-
 class CadastroFornecedores(models.Model):
 
     ativos = FornecedoresAtivos()
