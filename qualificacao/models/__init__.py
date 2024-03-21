@@ -1,2 +1,2 @@
-from cadastro_fornecedores import *
-from endereco_fornecedor import *
+from .endereco_fornecedor import *
+from .cadastro_fornecedores import *

@@ -1,5 +1,5 @@
 from django.db import models
-from endereco_fornecedor import EnderecoFornecedor
+from .endereco_fornecedor import EnderecoFornecedor
 
 from uuid import uuid4
 from datetime import datetime
@@ -7,6 +7,8 @@ from datetime import datetime
 """
 Classe que representa o fornecedor com relacionamento 1:1 para o endereco do fornecedor
 """
+
+
 class CadastroFornecedorManager(models.Manager):
     def deletados(self):
         return self.filter(deletado=True)
