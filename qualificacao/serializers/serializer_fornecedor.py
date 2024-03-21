@@ -8,6 +8,8 @@ class FornecedorSerializer(serializers.ModelSerializer):
         model = CadastroFornecedores
         fields = [field.name for field in CadastroFornecedores._meta.fields]
         read_only_fields = ['uuid', 'criado_em', 'deletado_em', 'atualizado_em']
+        depth = 2
 
     def validate(self, attrs):
         return super().validate(attrs)
+
