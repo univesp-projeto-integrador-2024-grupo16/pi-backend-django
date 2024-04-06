@@ -7,5 +7,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'qualificacao',
     'rest_framework',
+    'rest_framework_simplejwt',
     'debug_toolbar',
 ]

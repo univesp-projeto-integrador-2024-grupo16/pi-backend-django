@@ -5,3 +5,5 @@ from .urls_conf import *
 from .database import *
 from .auth import *
 from .internationalization import *
+from .rest_framework import *
+from .simple_jwt import *
