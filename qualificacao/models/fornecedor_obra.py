@@ -17,7 +17,7 @@ class FornecedorObras(models.Model):
         editable=False,
         unique=True
     )
-    obra = models.ForeignKey(CadastroObras, on_delete=models.RESTRICT, null=True)
+    obra = models.ForeignKey(CadastroObras, on_delete=models.RESTRICT, null=True, unique=True)
     fornecedores = models.ManyToManyField(CadastroFornecedores)
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)

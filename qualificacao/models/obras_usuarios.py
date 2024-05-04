@@ -15,7 +15,8 @@ class ObrasUsuario(models.Model):
         editable=False,
         unique=True
     )
-    auth_user = models.ManyToManyField(User)
+    #auth_user = models.ManyToManyField(User)
+    auth_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     obras = models.ManyToManyField(CadastroObras)
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)
